@@ -1,6 +1,3 @@
-﻿  GameEngine.cpp
-c:\users\18mac03\desktop\gameengine\gameengine\gameengine.cpp(70): warning C4091: 'typedef ': ignored on left of 'vec3' when no variable is declared
-c:\users\18mac03\desktop\gameengine\gameengine\gameengine.cpp(134): warning C4018: '<': signed/unsigned mismatch
-c:\users\18mac03\desktop\gameengine\gameengine\gameengine.cpp(136): warning C4018: '<': signed/unsigned mismatch
-c:\users\18mac03\desktop\gameengine\gameengine\gameengine.cpp(138): warning C4018: '<': signed/unsigned mismatch
+﻿  Camera.cpp
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
   GameEngine.vcxproj -> C:\Users\18mac03\Desktop\GameEngine\Debug\GameEngine.exe
