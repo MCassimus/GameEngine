@@ -15,6 +15,8 @@ Object::Object(const char * file)
 
 Object::~Object()
 {
+	glDeleteBuffers(1, &vertexbuffer);
+	glDeleteBuffers(1, &uvbuffer);	
 }
 
 
@@ -57,13 +59,12 @@ void Object::loadObj(const char * fileName)
 			{
 				line = line.substr(line.find(" ") + 1);
 
-				glm::vec3 tempVert;
+				glm::vec2 tempVert;
 
 				tempVert.x = std::stof(line.substr(0, line.find(" ")));
 				line = line.substr(line.find(" ") + 1);
 				tempVert.y = std::stof(line.substr(0, line.find(" ")));
 				line = line.substr(line.find(" ") + 1);
-				tempVert.z = std::stof(line);
 
 				textureCoordinate.push_back(tempVert);
 			}
@@ -85,12 +86,54 @@ void Object::loadObj(const char * fileName)
 		printf("%i : %f, %f, %f \n", i, vertexNormal.at(i).x, vertexNormal.at(i).y, vertexNormal.at(i).z);
 	for (size_t i = 0; i < textureCoordinate.size(); i++)
 		printf("%i : %f, %f, %f \n", i, textureCoordinate.at(i).x, textureCoordinate.at(i).y, textureCoordinate.at(i).z);*/
+
+	//give data to buffers
+	glGenBuffers(1, &vertexbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+	glBufferData(GL_ARRAY_BUFFER, vertex.size() * sizeof(glm::vec3), &vertex[0], GL_STATIC_DRAW);
+
+	glGenBuffers(1, &uvbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
+	glBufferData(GL_ARRAY_BUFFER, textureCoordinate.size() * sizeof(glm::vec2), &textureCoordinate[0], GL_STATIC_DRAW);
 }
 
 
 void Object::update()
 {
 	//printf("updating object\n");
+}
+
+
+void Object::render()
+{
+	// 1rst attribute buffer : vertices
+	glEnableVertexAttribArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+	glVertexAttribPointer(
+		0,                  // attribute
+		3,                  // size
+		GL_FLOAT,           // type
+		GL_FALSE,           // normalized?
+		0,                  // stride
+		(void*)0            // array buffer offset
+	);
+
+	// 2nd attribute buffer : UVs
+	glEnableVertexAttribArray(1);
+	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
+	glVertexAttribPointer(
+		1,                                // attribute
+		2,                                // size
+		GL_FLOAT,                         // type
+		GL_FALSE,                         // normalized?
+		0,                                // stride
+		(void*)0                          // array buffer offset
+	);
+
+	glDrawArrays(GL_TRIANGLES, 0, vertex.size());
+
+	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
 }
 
 

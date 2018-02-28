@@ -12,6 +12,7 @@ public:
 	~GameWindow();
 	void setCursorLocked(bool);
 	void setCursorVisible(bool);
+	void clear();
 	void render();
 	bool isOpen();
 	void close();

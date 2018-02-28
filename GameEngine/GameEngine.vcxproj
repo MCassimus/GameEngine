@@ -157,6 +157,7 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="Clock.h" />
     <ClInclude Include="GameWindow.h" />
+    <ClInclude Include="GameWindow3D.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -165,6 +166,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Clock.cpp" />
+    <ClCompile Include="GameWindow3D.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="Object.cpp" />
@@ -177,6 +179,10 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="licenses.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Shaders\fragmentShader.glsl" />
+    <None Include="..\Shaders\vertexShader.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

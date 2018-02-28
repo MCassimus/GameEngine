@@ -39,6 +39,9 @@ GameWindow::GameWindow()
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 #pragma endregion
 
+	//clear to black background
+	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+
 	glfwGetCursorPos(window, &GameWindow::mousePos.x, &GameWindow::mousePos.y);
 }
 
@@ -66,9 +69,10 @@ void GameWindow::setCursorVisible(bool visible)
 }
 
 
-//render clears buffer, updates mouse pos and grabs window related events
-void GameWindow::render()
+void GameWindow::clear() 
 {
+	clock.update();
+
 	#pragma region mouse
 	glm::dvec2 currentMousePos = glm::dvec2(0, 0);
 	glfwGetCursorPos(window, &currentMousePos.x, &currentMousePos.y);
@@ -83,9 +87,12 @@ void GameWindow::render()
 		glfwSetCursorPos(window, float(sizeX / 2.f), float(sizeY / 2.f));
 	}
 	#pragma endregion 
+}
 
-	clock.update();
 
+//render clears buffer, updates mouse pos and grabs window related events
+void GameWindow::render()
+{
 	//clear buffers & grab window events
 	glfwSwapBuffers(window);
 	glfwPollEvents();

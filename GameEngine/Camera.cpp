@@ -24,7 +24,7 @@ void Camera::update()
 	target.x = sin(rotation.y) * cameraDistance;
 	target.y = sin(rotation.x) * cameraDistance;
 	target.z = cos(rotation.y) * cameraDistance;
-]]	target += position;
+ 	target += position;
 
 	printf("camposx%f camposy%f camposz%f\n", position.x, position.y, position.z);
 	printf("camptgtosx%f camtgtposy%f camtgtposz%f\n", target.x, target.y, target.z);
